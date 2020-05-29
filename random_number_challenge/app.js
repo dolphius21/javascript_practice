@@ -13,5 +13,5 @@ if (numberLow && numberHigh) {
   // Create a message displaying the random number
   document.querySelector('main').innerHTML = `<h1>${randomNumber} is a random number between ${numberLow} and ${numberHigh}</h1>`;
 } else {
-  document.querySelector('main').innerHTML = `<h1>You need to provide a number, click refresh.</h1>`;
+  document.querySelector('main').innerHTML = `<h1>You need to provide two numbers, click refresh.</h1>`;
 }
