@@ -7,8 +7,6 @@
 3)	At this point, attempt to run your code by typing node let_const.js in your workspace console and hitting enter. You should receive an error message when you do this. Use the clues in this error message to fix the program so it runs.
 
 */
-
-
 const teachers = [
 	{
 		name: 'Ashley',
@@ -17,38 +15,14 @@ const teachers = [
 ];
 
 
-const courses = ['Introducing JavaScript',
-				'JavaScript Basics',
-				'JavaScript Loops, Arrays and Objects',
-				'Getting Started with ES2015',
-				'JavaScript and the DOM',
-				'DOM Scripting By Example'];
-			
-
-var i = courses.length;
-
-
-
-function addNewTeachers(newTeachers) {
-	// TODO: write a function that adds new teachers to the teachers array 
-
-}
-
-
-function printTreehouseSummary() {
-	// TODO: fix this function so that it prints the correct number of courses and   teachers 
-	
-  for (var i = 0; i < teachers.length; i++) {
-	 console.log(`${teachers[i].name} teaches ${teachers[i].topicArea}`);
-	}
-	
-  console.log(`Treehouse has ${i} JavaScript courses, and ${teachers.length} Javascript teachers`);
-}
-
-
-addNewTeachers(newTeachers);
-printTreehouseSummary();
-
+const courses = [
+	'Introducing JavaScript',
+	'JavaScript Basics',
+	'JavaScript Loops, Arrays and Objects',
+	'Getting Started with ES2015',
+	'JavaScript and the DOM',
+	'DOM Scripting By Example'
+];
 
 
 let newTeachers = [
@@ -58,9 +32,32 @@ let newTeachers = [
 	},
 	{
 		name: 'Treasure',
-		topicArea: 'Javascript'
+		topicArea: 'HTML & CSS'
 	}
 ];
+
+
+function addNewTeachers(newTeachers) {
+	// TODO: write a function that adds new teachers to the teachers array 
+	teachers.push(...newTeachers);
+}
+
+
+function printTreehouseSummary() {
+	// TODO: fix this function so that it prints the correct number of courses and   teachers 
+	
+  for (let i = 0; i < teachers.length; i++) {
+	 console.log(`${teachers[i].name} teaches ${teachers[i].topicArea}`);
+	}
+	
+  console.log(`Treehouse has ${courses.length} JavaScript courses, and ${teachers.length} Javascript teachers`);
+}
+
+
+
+addNewTeachers(newTeachers);
+printTreehouseSummary();
+
 
 
 
