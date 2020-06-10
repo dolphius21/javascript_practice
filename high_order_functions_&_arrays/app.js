@@ -64,3 +64,16 @@ const combinedMethods = ages
   .reduce((total, age) => total + age, 0);
 
 console.log(combinedMethods);
+
+groupedPeople = {
+  Alice: [
+    { name: 'Alice', age: 21 },
+  ],
+  Max: [
+    { name: 'Max', age: 20 },
+  ],
+  Jane: [
+    { name: 'Jane', age: 20 },
+  ],
+};
+
