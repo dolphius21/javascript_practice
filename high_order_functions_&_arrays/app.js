@@ -65,15 +65,3 @@ const combinedMethods = ages
 
 console.log(combinedMethods);
 
-groupedPeople = {
-  Alice: [
-    { name: 'Alice', age: 21 },
-  ],
-  Max: [
-    { name: 'Max', age: 20 },
-  ],
-  Jane: [
-    { name: 'Jane', age: 20 },
-  ],
-};
-
