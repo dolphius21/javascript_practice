@@ -46,7 +46,21 @@ console.log(companiesSortByYear);
 const companiesSortByName = companies.sort((c1, c2) => (c1.name > c2.name ? 1 : -1));
 console.log(companiesSortByName);
 
-const sortAges = ages.sort((age1, age2) => age1 - age2);
-console.log(sortAges);
+// const sortAges = ages.sort((age1, age2) => age1 - age2);
+// console.log(sortAges);
 
 // reduce
+const ageSum = ages.reduce((total, age) => total + age, 0);
+console.log(ageSum);
+
+const totalYears = companies.reduce((total, year) => total + (year.end - year.start), 0 );
+console.log(totalYears);
+
+// combine methods
+const combinedMethods = ages
+  .map(age => age * 2)
+  .filter(age => age >= 40)
+  .sort((age1, age2) => age1 - age2)
+  .reduce((total, age) => total + age, 0);
+
+console.log(combinedMethods);
