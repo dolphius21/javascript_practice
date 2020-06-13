@@ -65,3 +65,24 @@ const combinedMethods = ages
 
 console.log(combinedMethods);
 
+
+let people = [
+  { name: 'Alice', age: 21 },
+  { name: 'Max', age: 20 },
+  { name: 'Jane', age: 20 }
+];
+
+function groupBy(objectArray, property) {
+  return objectArray.reduce((result, currentPerson) => {
+    let age = currentPerson[property]
+    if (!result[age]) {
+      result[age] = []
+    }
+    result[age].push(currentPerson)
+    return result
+  }, {})
+}
+
+let groupedPeople = groupBy(people, 'age')
+console.log(groupedPeople);
+
