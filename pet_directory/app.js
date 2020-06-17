@@ -13,9 +13,9 @@ const print = (message) => document.querySelector('main').innerHTML = message;
 
 pets.forEach((pet) => {
   directory += `<h2>${pet.name}</h2>`;
-  directory += `<h3>${pet.type} | ${pet.breed}</h3>`;
-  directory += `<h3>Age: ${pet.age}</h3>`;
-  directory += `<img src="img/${pet.imgSrc}">`
+  directory += `<p>${pet.type} | ${pet.breed}</p>`;
+  directory += `<p>Age: ${pet.age}</p>`;
+  directory += `<img src="img/${pet.imgSrc}" alt="${pet.breed}">`
 });
 
 print(directory);
