@@ -1,24 +1,14 @@
-let html = '';
-let rgbColor;
+let color = '';
 
-const randomRGB = () => {
-  return Math.floor(Math.random() * 256 );
-};
+const randomValue = () => Math.floor(Math.random() * 256 );
 
-const randomColor = () => {
-  let color = `rgb(${randomRGB()},${randomRGB()},${randomRGB()})`;
-  return color;
-};
+const randomColor = () => `rgb(${randomValue()},${randomValue()},${randomValue()})`;
 
-const print = (message) => {
-  let main = document.querySelector('main');
-  main.innerHTML = message;
-};
+const print = (message) =>  document.querySelector('main').innerHTML = message;
 
 for ( let i = 0; i < 10; i++ ) {
-  rgbColor = randomColor();
-  html += `<div style="background-color: ${rgbColor}">${i}</div>`;
+  color += `<div style="background-color: ${randomColor()}">${i}</div>`;
 }
 
-print(html);
+print(color);
 
