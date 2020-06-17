@@ -1,22 +1,23 @@
 let html = '';
 let rgbColor;
 
-function randomRGB() {
+const randomRGB = () => {
   return Math.floor(Math.random() * 256 );
-}
+};
 
-function randomColor() {
+const randomColor = () => {
   let color = `rgb(${randomRGB()},${randomRGB()},${randomRGB()})`;
   return color;
-}
+};
 
-function print(message) {
-  document.write(message);
-}
+const print = (message) => {
+  let main = document.querySelector('main');
+  main.innerHTML = message;
+};
 
 for ( let i = 0; i < 10; i++ ) {
   rgbColor = randomColor();
-  html += '<div style="background-color:' + rgbColor + '"></div>';
+  html += `<div style="background-color: ${rgbColor}">${i}</div>`;
 }
 
 print(html);
