@@ -1,45 +1,37 @@
-let questions = [
-  ['How many states are in teh United States?', 50],
+const questions = [
+  ['How many planets are in the Solar System?', 8],
   ['How many legs does an insect have?', 6],
-  ['How many continents are there?', 7]
+  ['What year was JavaScript created?', 1995]
 ];
+const correct = [];
+const incorrect = [];
 let correctAnswers = 0;
-let question;
-let answer;
-let response;
-let html;
-let correct = [];
-let wrong = [];
 
-function print(message) {
-  document.getElementById('output').innerHTML = message;
-}
+const print = (message) => document.querySelector('main').innerHTML = message;
 
-function buildList(array) {
-  let listHTML = `<ol>`;
-  for (let i = 0; i < array.length; i++) {
-    listHTML += `<li>${array[i]}</li>`;
-  }
-  listHTML += `</ol>`;
-  return listHTML;
-}
-
-for (let i = 0; i < questions.length; i++) {
-  question = questions[i][0];
-  answer = questions[i][1];
-  response = parseInt(prompt(question));
-  if ( response === answer) {
-    correct.push(question);
-    correctAnswers += 1; 
+questions.forEach((question) => {
+  let answer = question[1]
+  let response = +prompt(question[0]);
+  if (response === answer) {
+    correctAnswers++;
+    correct.push(question[0]);
   } else {
-    wrong.push(question);
+    incorrect.push(question[0]);
   }
+});
+
+const createList = (array) => {
+  let list = `<ol>`;
+  array.forEach((item) => list += `<li>${item}</li>`);
+  list += `</ol>`;
+  return list;
 }
 
-html = `<p>You got ${correctAnswers} question(s) right.</p>`;
-html += `<h2> You got these question(s) right:`;
-html += buildList(correct);
-html += `<h2> You got these question(s) wrong:`;
-html += buildList(wrong);
-print(html);
+let result = `<h1>You got ${correctAnswers} question(s) right.<h1>`;
+result += `<h2>You got these questions right:</h2>`;
+result += createList(correct);
+result += `<h2>You got these questions wrong:</h2>`;
+result += createList(incorrect);
+
+print(result);
 
