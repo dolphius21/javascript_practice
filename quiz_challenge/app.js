@@ -1,5 +1,6 @@
 const questions = [
   ['How many planets are in the Solar System?', 8],
+  ['How many continents are there?', 7],
   ['How many legs does an insect have?', 6],
   ['What year was JavaScript created?', 1995]
 ];
