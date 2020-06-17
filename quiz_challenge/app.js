@@ -1,8 +1,8 @@
 const questions = [
-  ['How many planets are in the Solar System?', 8],
-  ['How many continents are there?', 7],
-  ['How many legs does an insect have?', 6],
-  ['What year was JavaScript created?', 1995]
+  { question: 'How many planets are in the Solar System?', answer: 8 },
+  { question: 'How many continents are there?', answer: 7 },
+  { question: 'How many legs does an insect have?', answer: 6 },
+  { question: 'What year was JavaScript created?', answer: 1995 }
 ];
 const correct = [];
 const incorrect = [];
@@ -11,13 +11,13 @@ let correctAnswers = 0;
 const print = (message) => document.querySelector('main').innerHTML = message;
 
 questions.forEach((question) => {
-  let answer = question[1]
-  let response = +prompt(question[0]);
+  let answer = question.answer;
+  let response = +prompt(question.question);
   if (response === answer) {
     correctAnswers++;
-    correct.push(question[0]);
+    correct.push(question.question);
   } else {
-    incorrect.push(question[0]);
+    incorrect.push(question.question);
   }
 });
 
