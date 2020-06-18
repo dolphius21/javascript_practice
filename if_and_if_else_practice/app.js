@@ -2,6 +2,9 @@
 
 // 1. Move all of your variable declarations to the top of the script.
 
+// announce the program
+alert("Let's do some math!");
+
 // collect numeric input
 let num1 = +prompt("Please type a number");
 let num2 = +prompt("Please type another number");
@@ -28,8 +31,6 @@ const print = (message) => document.querySelector('main').innerHTML = message;
 // 4. Don't build the message variable, or write the message to the doc, if
 //    either case 2 or 3 above fails. 
 
-// announce the program
-alert("Let's do some math!");
 
 if (num2 === 0) {
   alert(`The second number is 0. You can't divide by zero. Reload and try again.`);
