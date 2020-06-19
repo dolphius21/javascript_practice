@@ -33,12 +33,10 @@ const createDeck = () => {
       deck.push(card);
     })
   });
-  return deck;
+  return shuffleDeck(deck);
 }
 
-const newDeck = createDeck();
-
-const myDeck = shuffleDeck(newDeck);
+const myDeck = createDeck();
 
 myDeck.forEach(card => {
   let list = '';
