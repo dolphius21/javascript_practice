@@ -147,7 +147,6 @@ const customers = [
 
 const hobbies = customers
   .map(customer => customer.personal)
-  .map(personal => personal.hobbies)
-  .reduce((hobbiesArray, hobbies) => [...hobbiesArray, ...hobbies], []);
+  .reduce((hobbiesArray, personal) => [...hobbiesArray, ...personal.hobbies], []);
 
 console.log(hobbies);
