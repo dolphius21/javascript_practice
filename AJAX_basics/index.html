@@ -9,14 +9,19 @@
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
-        document.querySelector('#ajax').innerHTML = xhr.responseText;
+        if (xhr.status === 200) {
+          document.querySelector('#ajax').innerHTML = xhr.responseText;
+        } else {
+          alert(xhr.statusText);
+        }
       }
     };
+
     xhr.open('GET', 'sidebar.html');
-    const sendAJAX = () => {
+    const sendAJAX = () => { 
       xhr.send();
       document.querySelector('#load').style.display = 'none';
-    } 
+    }; 
   </script>
 </head>
 <body>
