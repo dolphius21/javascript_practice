@@ -23,7 +23,7 @@ roomsRequest.onreadystatechange = () => {
   if (roomsRequest.readyState === 4) {
     const rooms = JSON.parse(roomsRequest.responseText);
     const roomListDiv = document.querySelector('#roomList');
-    let listHTML = `<ul class="bulleted">`;
+    let listHTML = `<ul class="rooms">`;
     rooms.forEach(room => {
       if (room.available) {
         listHTML += `<li class="empty">${room.room}</li>`
