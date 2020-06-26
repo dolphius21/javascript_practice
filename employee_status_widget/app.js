@@ -1,7 +1,7 @@
-const employeesData = new XMLHttpRequest();
-employeesData.onreadystatechange = () => {
-  if (employeesData.readyState === 4) {
-    const employees = JSON.parse(employeesData.responseText);
+const employeesRequest = new XMLHttpRequest();
+employeesRequest.onreadystatechange = () => {
+  if (employeesRequest.readyState === 4) {
+    const employees = JSON.parse(employeesRequest.responseText);
     const employeeListDiv = document.querySelector('#employeeList');
     let listHTML = `<ul class="bulleted">`;
     employees.forEach(employee => {
@@ -15,13 +15,13 @@ employeesData.onreadystatechange = () => {
     employeeListDiv.innerHTML = listHTML;
   }
 };
-employeesData.open('GET', 'employees.json');
-employeesData.send();
+employeesRequest.open('GET', 'employees.json');
+employeesRequest.send();
 
-const roomsData = new XMLHttpRequest();
-roomsData.onreadystatechange = () => {
-  if (roomsData.readyState === 4) {
-    const rooms = JSON.parse(roomsData.responseText);
+const roomsRequest = new XMLHttpRequest();
+roomsRequest.onreadystatechange = () => {
+  if (roomsRequest.readyState === 4) {
+    const rooms = JSON.parse(roomsRequest.responseText);
     const roomListDiv = document.querySelector('#roomList');
     let listHTML = `<ul class="bulleted">`;
     rooms.forEach(room => {
@@ -35,5 +35,5 @@ roomsData.onreadystatechange = () => {
     roomListDiv.innerHTML = listHTML;
   }
 };
-roomsData.open('GET', 'rooms.json');
-roomsData.send();
+roomsRequest.open('GET', 'rooms.json');
+roomsRequest.send();
