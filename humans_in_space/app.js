@@ -3,41 +3,50 @@ const wikiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 const peopleList = document.getElementById('astronauts-list');
 const btn = document.querySelector('button');
 
-// To make an AJAX request
-const getJSON = (url, callback) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-      let data = JSON.parse(xhr.responseText);
-      return callback(data);
+const getProfiles = (json) => {
+  const profiles = json.people.map(person => {
+    const craft = person.craft;
+    if (person.name === "Anatoly Ivanishin") {
+      person.name = "Anatoli Ivanishin";
     }
-  };
-  xhr.send();
-};
+    if (person.name === "Chris Cassidy") {
+      person.name = "Christopher Cassidy";
+    }
+    return fetch(wikiUrl + person.name)
+            .then(response => response.json())
+            .then(profile => {
+              return {...profile, craft}
+            })
+            .catch(error => console.log('Error Fetching Wiki:', error))
+  });
+  return Promise.all(profiles);
+}
 
 const generateHTML = (data) => {
-  const section = document.createElement('section');
-  peopleList.appendChild(section);
-  section.innerHTML = `
-      <img src=${data.thumbnail.source}>
-      <h2>${data.title}</h2>
-      <p>${data.description}</p>
-      <p>${data.extract}</p>
-    `;
+  data.map(person => {
+    const section = document.createElement('section');
+    peopleList.appendChild(section);
+    section.innerHTML = `
+        <img src=${person.thumbnail.source}>
+        <span>${person.craft}</span>
+        <h2>${person.title}</h2>
+        <p>${person.description}</p>
+        <p>${person.extract}</p>
+      `;
+  });
 };
 
 btn.addEventListener('click', (e) => {
-  getJSON(astronautsDataUrl, (json) => {
-    json.people.map(person => {
-      if (person.name === "Anatoly Ivanishin") {
-        person.name = "Anatoli Ivanishin";
-      }
-      if (person.name === "Chris Cassidy") {
-        person.name = "Christopher Cassidy";
-      }
-      getJSON(wikiUrl + person.name, generateHTML);
-    });
-  });
-  e.target.remove();
+  e.target.textContent = 'Loading...';
+  fetch(astronautsDataUrl)
+    .then(response => response.json())
+    .then(getProfiles)
+    .then(generateHTML)
+    .catch(error => {
+      peopleList.innerHTML = '<h3>Something went wrong!</h3>';
+      console.log(error);
+    })
+    .finally(() => e.target.remove());
 });
+
+
