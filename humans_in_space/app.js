@@ -13,11 +13,11 @@ const getProfiles = (json) => {
       person.name = "Christopher Cassidy";
     }
     return fetch(wikiUrl + person.name)
-            .then(response => response.json())
-            .then(profile => {
-              return {...profile, craft}
-            })
-            .catch(error => console.log('Error Fetching Wiki:', error))
+          .then(response => response.json())
+          .then(profile => {
+             return {...profile, craft}
+          })
+          .catch(error => console.log('Error Fetching Wiki:', error))
   });
   return Promise.all(profiles);
 }
