@@ -9,9 +9,7 @@ const getJSON = (url, callback) => {
   dataRequest.open('GET', url);
   dataRequest.onload = () => {
     if (dataRequest.status === 200) {
-      console.log(dataRequest.responseText);
       let data = JSON.parse(dataRequest.responseText);
-      console.log(data);
       return callback(data);
     }
   };
