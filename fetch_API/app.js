@@ -3,20 +3,15 @@ const card = document.querySelector('.card');
 const form = document.querySelector('form');
 
 
-//  FETCH FUNCTIONS
-const fetchData = url => {
-  return fetch(url)
-          .then(response => response.json())
+//  HELPER FUNCTIONS
+const checkStatus = response => {
+  if (response.ok) {
+    return Promise.resolve(response);
+  } else {
+    return Promise.reject(new Error(response.statusText));
+  }
 };
 
-fetchData('https://dog.ceo/api/breeds/list')
-  .then(data => generateOptions(data.message))
-
-fetchData('https://dog.ceo/api/breeds/image/random')
-  .then(data => generateImage(data.message))
-
-
-//  HELPER FUNCTIONS
 const generateOptions = data => {
   let options = '';
   data.map(item => {
@@ -28,7 +23,7 @@ const generateOptions = data => {
 const generateImage = data => {
   const html = `
     <img src='${data}' alt>
-    <p>Click to view images of 
+    <p>Click to view more images of 
     <span class="capitalize">${select.value}<span>s
     </p>
   `
@@ -47,6 +42,21 @@ const fetchBreedImage = () => {
                     <span class="capitalize">${breed}<span>s`
     })
 };
+
+
+//  FETCH FUNCTIONS
+const fetchData = url => {
+  return fetch(url)
+          .then(checkStatus)
+          .then(response => response.json())
+          .catch(error => console.log('Looks like there was a problem', error))
+};
+
+fetchData('https://dog.ceo/api/breeds/list')
+  .then(data => generateOptions(data.message))
+
+fetchData('https://dog.ceo/api/breed/affenpinscher/images/random')
+  .then(data => generateImage(data.message))
 
 
 //  EVENT LISTENERS
