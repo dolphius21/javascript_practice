@@ -52,17 +52,38 @@ const fetchData = url => {
           .catch(error => console.log('Looks like there was a problem', error))
 };
 
-fetchData('https://dog.ceo/api/breeds/list')
-  .then(data => generateOptions(data.message))
+Promise.all([
+  fetchData('https://dog.ceo/api/breeds/list'),
+  fetchData('https://dog.ceo/api/breed/affenpinscher/images/random')
+])
+.then(data => {
+  const breedList = data[0].message;
+  const initialImage = data[1].message;
+  generateOptions(breedList);
+  generateImage(initialImage); 
+})
 
-fetchData('https://dog.ceo/api/breed/affenpinscher/images/random')
-  .then(data => generateImage(data.message))
+
+//  POST DATA
+
+const postData = e => {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const comment = document.getElementById('comment').value;
+  const config = {
+    method: 'POST',
+    headers: {'Conten-Type': 'application/json'},
+    body: JSON.stringify({name, comment})
+  }
+
+  fetch('https://jsonplaceholder.typicode.com/comments', config)
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(data => console.log(data))
+};
 
 
 //  EVENT LISTENERS
 select.addEventListener('change', fetchBreedImage);
 card.addEventListener('click', fetchBreedImage);
-
-
-//  POST DATA
-
+form.addEventListener('submit', postData);
