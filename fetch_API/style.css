@@ -975,6 +975,9 @@ input[type="text"], select, textarea {
 select {
   text-transform: capitalize; }
 
+.capitalize {
+  text-transform: capitalize; }
+
 .error {
   background: #ff826f;
   border-radius: 4px;
