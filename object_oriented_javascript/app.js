@@ -30,15 +30,26 @@ class Pet {
    }
 }
 
+class Owner {
+   constructor(name, address) {
+      this.name = name;
+      this.address = address;
+   }
+
+   set phone(phone) {
+      const normalizedPhone = phone.replace(/[^0-9]/g, '');
+      this._phone = normalizedPhone;
+   }
+
+   get phone() {
+      return this._phone;
+   }
+}
+
 const ernie = new Pet('dog', 1, 'pug', 'yip yip');
 const vera = new Pet('dog', 8, 'border collie', 'woof woof');
 
-ernie.speak();
-vera.speak();
-
-console.log(ernie);
-console.log(vera);
-
-ernie.owner = 'Ashley';
+ernie.owner = new Owner('Ashley', '123 Main Street');
+ernie.owner.phone = '(555) 555-5555';
 
 console.log(ernie.owner);
