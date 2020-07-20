@@ -28,5 +28,10 @@ const book1 = new Book("Philosopher's Stone", "J.K Rowling", "1997");
 const book2 = new Book("The Final Empire", "Brandon Sanderson", "2006");
 
 console.log(book1);
-console.log(book2.getSummary());
-console.log(Book.topBookStore());
+
+for (let value in book1) {
+   console.log(`${value}: ${book1[value]}`);
+}
+
+const keys = Object.keys(book1);
+console.log(keys);
